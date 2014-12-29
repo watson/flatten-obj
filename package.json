@@ -1,0 +1,36 @@
+{
+  "name": "flatten-obj",
+  "version": "0.0.0",
+  "description": "Converts an object literal with deeply nested nodes to a simple key/value object",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "flatten",
+    "compound",
+    "keys",
+    "update",
+    "flatten",
+    "nested",
+    "dot"
+  ],
+  "author": "Thomas Watson Steen <w@tson.dk>",
+  "license": "MIT",
+  "dependencies": {
+    "isobj": "^1.0.0"
+  },
+  "devDependencies": {
+    "tape": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/watson/flatten-obj.git"
+  },
+  "bugs": {
+    "url": "https://github.com/watson/flatten-obj/issues"
+  },
+  "homepage": "https://github.com/watson/flatten-obj"
+}
