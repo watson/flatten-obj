@@ -1,5 +1,6 @@
 'use strict';
 
+var mongojs = require('mongojs');
 var test = require('tape');
 var flatten = require('./');
 
@@ -22,5 +23,11 @@ test('only flatten nested objects', function (t) {
     'sub.foo': 1,
     'sub.bar.baz': 3
   });
+  t.end();
+});
+
+test('should not traverse into a MongoDB ObjectId', function (t) {
+  var id = mongojs.ObjectId();
+  t.deepEqual(flatten({ id: id }), { id: id });
   t.end();
 });

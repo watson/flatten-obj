@@ -20,9 +20,10 @@
   "author": "Thomas Watson Steen <w@tson.dk>",
   "license": "MIT",
   "dependencies": {
-    "isobj": "^1.0.0"
+    "isobj": "git://github.com/watson/isobj.git#alternative"
   },
   "devDependencies": {
+    "mongojs": "^0.18.0",
     "tape": "^3.0.3"
   },
   "repository": {
