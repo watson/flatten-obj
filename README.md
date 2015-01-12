@@ -27,34 +27,6 @@ To this:
 
 [![Build Status](https://travis-ci.org/watson/flatten-obj.png)](https://travis-ci.org/watson/flatten-obj)
 
-## Why?
-
-You are free to use this module for whatever you like, but personally I
-use it when updating a MongoDB document with new values. Say I have the
-following user document in a MongoDB collection:
-
-```js
-{
-  _id: 'foo',
-  name: 'John Doe',
-  email: {
-    work: 'john@example.com',
-    home: 'john@example.net'
-  }
-}
-```
-
-If I would like to update the users home email without modifying his
-work email, I would have to run the following query (notice the key
-`email.home`):
-
-```js
-db.users.update({ _id: 'foo' }, { $set: { 'email.home': 'j.doe@example.net' } });
-```
-
-This module helps to create those object structures by turning `{ email:
-{ home: '...' } }` into `{ 'email.home': '...' }`.
-
 ## Installation
 
 ```
@@ -77,6 +49,15 @@ console.log(flatten(obj));
 ```
 
 ## Gotchas
+
+### MongoDB data types
+
+If you object contains MongoDB data types like `ObjectId` or
+`Timestamp`, this module will try to flatten those as well. **You do not
+want this**. In that case you should use
+[flatten-mongo-obj](https://github.com/watson/flatten-mongo-obj).
+
+### Arrays
 
 This module currenly leaves arrays and their content in place. I.e. the
 keys `foo` and `bar` in the following object isn't modified:

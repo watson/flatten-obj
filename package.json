@@ -7,8 +7,6 @@
     "test": "node test.js"
   },
   "keywords": [
-    "mongo",
-    "mongodb",
     "flatten",
     "compound",
     "keys",
