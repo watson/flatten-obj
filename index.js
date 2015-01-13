@@ -2,27 +2,36 @@
 
 var isObj = require('isobj');
 
-module.exports = function (obj) {
-  var result = {};
+var Flatten = module.exports = function () {
+  var blacklist = Array.prototype.slice.call(arguments);
+  var isBlacklisted = function (obj) {
+    return blacklist.some(function (type) {
+      return obj instanceof type;
+    });
+  };
 
-  (function iterator (obj, prefix) {
-    var n = 0;
-    var keys = Object.keys(obj);
-    var len = keys.length;
-    var key, val;
+  return function (obj) {
+    var result = {};
 
-    for (; n < len; n++) {
-      key = keys[n];
-      val = obj[key];
+    (function iterator (obj, prefix) {
+      var n = 0;
+      var keys = Object.keys(obj);
+      var len = keys.length;
+      var key, val;
 
-      if (isObj(val)) {
-        iterator(val, prefix + key + '.');
-        continue;
+      for (; n < len; n++) {
+        key = keys[n];
+        val = obj[key];
+
+        if (isObj(val) && !isBlacklisted(val)) {
+          iterator(val, prefix + key + '.');
+          continue;
+        }
+
+        result[prefix + key] = val;
       }
+    })(obj, '');
 
-      result[prefix + key] = val;
-    }
-  })(obj, '');
-
-  return result;
+    return result;
+  };
 };

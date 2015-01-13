@@ -36,7 +36,7 @@ npm install flatten-obj
 ## Usage
 
 ```js
-var flatten = require('flatten-obj');
+var flatten = require('flatten-obj')();
 
 var obj = {
   foo: {
@@ -48,14 +48,48 @@ var obj = {
 console.log(flatten(obj));
 ```
 
+### Blacklist
+
+Some objects migth seem like object literals, but shouldn't be
+flattened. To avoid this, you can supply a list of classes that
+shouldn't be flattened when the object is traversed:
+
+```js
+var Klass = function () {
+  this.baz = 1;
+};
+
+var flatten = require('flatten-obj')(Klass);
+
+var obj = {
+  foo: {
+    bar: new Klass()
+  }
+};
+
+// outputs `{ 'foo.bar': { baz: 1 } }`
+console.log(flatten(obj));
+```
+
 ## Gotchas
 
 ### MongoDB data types
 
-If you object contains MongoDB data types like `ObjectId` or
-`Timestamp`, this module will try to flatten those as well. **You do not
-want this**. In that case you should use
-[flatten-mongo-obj](https://github.com/watson/flatten-mongo-obj).
+MongoDB data types like `ObjectId` or `Timestamp` looks like regular
+object literals and should be handled with care. So you would normally
+want to add those to the blacklist:
+
+```js
+var mongodb = requrie('mongodb');
+var flatten = request('flatten-obj')(
+  mongodb.ObjectID,
+  mongodb.DBRef,
+  mongodb.Timestamp,
+  mongodb.MinKey,
+  mongodb.MaxKey,
+  mongodb.Long
+);
+```
 
 ### Arrays
 
