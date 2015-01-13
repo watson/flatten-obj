@@ -80,8 +80,8 @@ object literals and should be handled with care. So you would normally
 want to add those to the blacklist:
 
 ```js
-var mongodb = requrie('mongodb');
-var flatten = request('flatten-obj')(
+var mongodb = require('mongodb');
+var flatten = require('flatten-obj')(
   mongodb.ObjectID,
   mongodb.DBRef,
   mongodb.Timestamp,
