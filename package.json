@@ -4,7 +4,7 @@
   "description": "Converts an object literal with deeply nested nodes to a simple key/value object",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "standard && node test.js"
   },
   "keywords": [
     "mongo",
@@ -23,6 +23,7 @@
     "isobj": "^1.0.0"
   },
   "devDependencies": {
+    "standard": "^6.0.4",
     "tape": "^3.0.3"
   },
   "repository": {
