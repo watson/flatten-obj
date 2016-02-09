@@ -4,15 +4,12 @@ var isObj = require('isobj');
 
 var Flatten = module.exports = function (obj, options) {
   options = options || {};
-  options.blacklist = options.blacklist || [];
-  if (options.separator == null) {  // explicitly check for null or undefined
-                                    // to allow empty string as separator
-    options.separator = '.';
-  }
+  var blacklist = options.blacklist || [];
+  var separator = options.separator == null ? '.' : options.separator;
 
 
   var isBlacklisted = function (obj) {
-    return options.blacklist.some(function (type) {
+    return blacklist.some(function (type) {
       return obj instanceof type;
     });
   };
@@ -30,7 +27,7 @@ var Flatten = module.exports = function (obj, options) {
       val = obj[key];
 
       if (isObj(val) && !isBlacklisted(val)) {
-        iterator(val, prefix + key + options.separator);
+        iterator(val, prefix + key + separator);
         continue;
       }
 
