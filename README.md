@@ -37,16 +37,16 @@ npm install flatten-obj
 ## Usage
 
 ```js
-var flatten = require('flatten-obj')();
+var flatten = require('flatten-obj')()
 
 var obj = {
   foo: {
     bar: 1
   }
-};
+}
 
 // outputs `{ 'foo.bar': 1 }`
-console.log(flatten(obj));
+console.log(flatten(obj))
 ```
 
 ### Blacklist
@@ -57,19 +57,19 @@ shouldn't be flattened when the object is traversed:
 
 ```js
 var Klass = function () {
-  this.baz = 1;
-};
+  this.baz = 1
+}
 
-var flatten = require('flatten-obj')({ blacklist: [Klass] });
+var flatten = require('flatten-obj')({ blacklist: [Klass] })
 
 var obj = {
   foo: {
     bar: new Klass()
   }
-};
+}
 
 // outputs `{ 'foo.bar': { baz: 1 } }`
-console.log(flatten(obj));
+console.log(flatten(obj))
 ```
 
 ### Custom separator
@@ -77,16 +77,16 @@ console.log(flatten(obj));
 You can use a custom separator character to join keys:
 
 ```js
-var flatten = require('flatten-obj')({ separator: '/' });
+var flatten = require('flatten-obj')({ separator: '/' })
 
 var obj = {
   foo: {
     bar: 42
   }
-};
+}
 
 // outputs `{ 'foo/bar': 42 }`
-console.log(flatten(obj));
+console.log(flatten(obj))
 ```
 
 ## Gotchas
@@ -98,7 +98,7 @@ object literals and should be handled with care. So you would normally
 want to add those to the blacklist:
 
 ```js
-var mongodb = require('mongodb');
+var mongodb = require('mongodb')
 var flatten = require('flatten-obj')({ blacklist: [
   mongodb.ObjectID,
   mongodb.DBRef,
@@ -106,7 +106,7 @@ var flatten = require('flatten-obj')({ blacklist: [
   mongodb.MinKey,
   mongodb.MaxKey,
   mongodb.Long
-]});
+]})
 ```
 
 ### Arrays
