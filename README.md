@@ -36,7 +36,7 @@ npm install flatten-obj
 ## Usage
 
 ```js
-var flatten = require('flatten-obj')();
+var flatten = require('flatten-obj');
 
 var obj = {
   foo: {
@@ -59,7 +59,7 @@ var Klass = function () {
   this.baz = 1;
 };
 
-var flatten = require('flatten-obj')(Klass);
+var flatten = require('flatten-obj');
 
 var obj = {
   foo: {
@@ -68,8 +68,31 @@ var obj = {
 };
 
 // outputs `{ 'foo.bar': { baz: 1 } }`
-console.log(flatten(obj));
+console.log(flatten(obj, {
+  blacklist: [Klass]
+}));
 ```
+
+### Custom separator
+
+You can use a custom separator character to join keys:
+
+```js
+var flatten = require('flatten-obj');
+
+var obj = {
+  foo: {
+    bar: 42
+  }
+};
+
+// outputs `{ 'foo/bar': 42 }`
+console.log(flatten(obj, {
+  separator: '/'
+}));
+```
+
+
 
 ## Gotchas
 
@@ -81,14 +104,19 @@ want to add those to the blacklist:
 
 ```js
 var mongodb = require('mongodb');
-var flatten = require('flatten-obj')(
-  mongodb.ObjectID,
-  mongodb.DBRef,
-  mongodb.Timestamp,
-  mongodb.MinKey,
-  mongodb.MaxKey,
-  mongodb.Long
-);
+var flatten = require('flatten-obj');
+
+
+flatten(obj, {
+  blacklist: {
+    mongodb.ObjectID,
+    mongodb.DBRef,
+    mongodb.Timestamp,
+    mongodb.MinKey,
+    mongodb.MaxKey,
+    mongodb.Long
+  }
+});
 ```
 
 ### Arrays
