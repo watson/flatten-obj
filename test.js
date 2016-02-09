@@ -49,7 +49,6 @@ test('do not traverse black listed types', function (t) {
   t.end()
 })
 
-
 test('support custom separator', function (t) {
   var obj = {
     sub: { foo: 1, bar: { baz: 3 } }
@@ -62,7 +61,6 @@ test('support custom separator', function (t) {
 
   t.end()
 })
-
 
 test('support empty string separator', function (t) {
   var obj = {

@@ -7,7 +7,6 @@ module.exports = function flatten (obj, options) {
   var blacklist = options.blacklist || []
   var separator = options.separator == null ? '.' : options.separator
 
-
   var isBlacklisted = function (obj) {
     return blacklist.some(function (type) {
       return obj instanceof type
