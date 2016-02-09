@@ -14,8 +14,11 @@ module.exports = function flatten (obj, options) {
   }
 
   var result = {}
+  iterator(obj, '')
 
-  (function iterator (obj, prefix) {
+  return result
+
+  function iterator (obj, prefix) {
     var n = 0
     var keys = Object.keys(obj)
     var len = keys.length
@@ -32,7 +35,5 @@ module.exports = function flatten (obj, options) {
 
       result[prefix + key] = val
     }
-  })(obj, '')
-
-  return result
+  }
 }
