@@ -2,7 +2,7 @@
 
 var isObj = require('isobj')
 
-var Flatten = module.exports = function (obj, options) {
+module.exports = function flatten (obj, options) {
   options = options || {}
   var blacklist = options.blacklist || []
   var separator = options.separator == null ? '.' : options.separator
