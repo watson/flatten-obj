@@ -1,9 +1,11 @@
 'use strict'
 
 var test = require('tape')
-var flatten = require('./')
+var Flatten = require('./')
 
 test('only flatten nested objects', function (t) {
+  var flatten = Flatten()
+
   var obj = {
     number: 1,
     string: 'foo',
@@ -31,6 +33,7 @@ test('do not traverse black listed types', function (t) {
     this.foo = 1
   }
   var instance = new Klass()
+  var flatten = Flatten({ blacklist: [Klass] })
 
   var obj = {
     a: {
@@ -41,7 +44,7 @@ test('do not traverse black listed types', function (t) {
     }
   }
 
-  t.deepEqual(flatten(obj, {blacklist: [Klass]}), {
+  t.deepEqual(flatten(obj), {
     'a.a': 1,
     'b.a': instance
   })
@@ -53,8 +56,9 @@ test('support custom separator', function (t) {
   var obj = {
     sub: { foo: 1, bar: { baz: 3 } }
   }
+  var flatten = Flatten({ separator: '_' })
 
-  t.deepEqual(flatten(obj, {separator: '_'}), {
+  t.deepEqual(flatten(obj), {
     'sub_foo': 1,
     'sub_bar_baz': 3
   })
@@ -66,8 +70,9 @@ test('support empty string separator', function (t) {
   var obj = {
     sub: { foo: 1, bar: { baz: 3 } }
   }
+  var flatten = Flatten({ separator: '' })
 
-  t.deepEqual(flatten(obj, {separator: ''}), {
+  t.deepEqual(flatten(obj), {
     'subfoo': 1,
     'subbarbaz': 3
   })
