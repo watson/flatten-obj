@@ -48,3 +48,31 @@ test('do not traverse black listed types', function (t) {
 
   t.end();
 });
+
+
+test('support custom separator', function (t) {
+  var obj = {
+    sub: { foo: 1, bar: { baz: 3 } }
+  };
+
+  t.deepEqual(flatten(obj, {separator: '_'}), {
+    'sub_foo': 1,
+    'sub_bar_baz': 3
+  });
+
+  t.end();
+});
+
+
+test('support empty string separator', function (t) {
+  var obj = {
+    sub: { foo: 1, bar: { baz: 3 } }
+  };
+
+  t.deepEqual(flatten(obj, {separator: ''}), {
+    'subfoo': 1,
+    'subbarbaz': 3
+  });
+
+  t.end();
+});
