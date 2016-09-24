@@ -87,8 +87,8 @@ test('support no prefix', function (t) {
   var flatten = Flatten({ onlyLeaves: true })
 
   t.deepEqual(flatten(obj), {
-    'foo': 1,
-    'baz': 3
+    foo: 1,
+    baz: 3
   })
 
   t.end()
