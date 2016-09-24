@@ -79,3 +79,17 @@ test('support empty string separator', function (t) {
 
   t.end()
 })
+
+test('support no prefix', function (t) {
+  var obj = {
+    sub: { foo: 1, bar: { baz: 3 } }
+  }
+  var flatten = Flatten({ onlyLeaves: true })
+
+  t.deepEqual(flatten(obj), {
+    'foo': 1,
+    'baz': 3
+  })
+
+  t.end()
+})

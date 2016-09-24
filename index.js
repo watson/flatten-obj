@@ -6,6 +6,7 @@ module.exports = function (options) {
   options = options || {}
   var blacklist = options.blacklist || []
   var separator = options.separator == null ? '.' : options.separator
+  var onlyLeaves = options.onlyLeaves && true
 
   return flatten
 
@@ -16,21 +17,18 @@ module.exports = function (options) {
   }
 
   function iterator (obj, prefix, flattened) {
-    var n = 0
     var keys = Object.keys(obj)
-    var len = keys.length
-    var key, val
 
-    for (; n < len; n++) {
-      key = keys[n]
-      val = obj[key]
+    for (var n = 0; n < keys.length; n++) {
+      var key = keys[n]
+      var val = obj[key]
 
       if (isObj(val) && !isBlacklisted(val)) {
         iterator(val, prefix + key + separator, flattened)
         continue
       }
 
-      flattened[prefix + key] = val
+      onlyLeaves ? flattened[key] = val : flattened[prefix + key] = val
     }
   }
 
