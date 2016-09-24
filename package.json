@@ -1,6 +1,6 @@
 {
   "name": "flatten-obj",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Converts an object literal with deeply nested nodes to a simple key/value object",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/watson/flatten-obj",
   "coordinates": [
-    55.6665656,
-    12.5802187
+    41.3264557,
+    -72.91879039999999
   ]
 }
