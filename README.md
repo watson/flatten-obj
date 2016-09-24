@@ -89,6 +89,26 @@ var obj = {
 console.log(flatten(obj))
 ```
 
+### Leafs
+
+Only return the leaf nodes
+
+```js
+var flatten = require('flatten-obj')({ onlyLeafs: true })
+
+var obj = {
+  sub: {
+    foo: 1,
+    bar: {
+      baz: 2
+    }
+  }
+}
+
+// outputs `{ foo: 1, baz: 2 }`
+console.log(flatten(obj))
+```
+
 ## Gotchas
 
 ### MongoDB data types
