@@ -89,12 +89,12 @@ var obj = {
 console.log(flatten(obj))
 ```
 
-### Leafs
+### Leaves
 
 Only return the leaf nodes
 
 ```js
-var flatten = require('flatten-obj')({ onlyLeafs: true })
+var flatten = require('flatten-obj')({ onlyLeaves: true })
 
 var obj = {
   sub: {
